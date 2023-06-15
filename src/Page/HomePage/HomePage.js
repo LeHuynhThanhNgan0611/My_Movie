@@ -4,6 +4,8 @@ import { API_KEY } from '../..';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Typography } from '@mui/material';
+import MovieItem from '../../Components/MovieItem/MovieItem';
+import HotMovie from '../../Components/HotMovie/HotMovie';
 
 function HomePage() {
     const [hotMovies, setHotMovies] = useState([]);
@@ -55,54 +57,7 @@ function HomePage() {
         <>
             <AliceCarousel
                 items={hotMovies.map((movie) => (
-                    <div style={{ padding: '10px', position: 'relative' }}>
-                        <img
-                            draggable="false"
-                            src={'https://image.tmdb.org/t/p/w400' + movie.backdrop_path}
-                            style={{
-                                width: '100%',
-                                objectFit: 'cover',
-                                padding: '20px 10px',
-                                display: 'block',
-                            }}
-                        ></img>
-                        <div
-                            style={{
-                                position: 'absolute',
-                                bottom: '25px',
-                                left: '25px',
-                            }}
-                        >
-                            <div
-                                style={{
-                                    backgroundColor: '#1976d2',
-                                    padding: '5px',
-                                    borderRadius: '5px',
-                                    marginBottom: '10px',
-                                }}
-                            >
-                                <Typography
-                                    sx={{
-                                        fontWeight: 500,
-                                        fontSize: '16px',
-                                        color: 'white',
-                                    }}
-                                >
-                                    {movie.title}
-                                </Typography>
-                            </div>
-                            <Typography
-                                sx={{
-                                    fontSize: '15px',
-                                    color: 'white',
-                                    marginBottom: '15px',
-                                    marginLeft: '2px',
-                                }}
-                            >
-                                {movie.release_date.slice(0, 4)}
-                            </Typography>
-                        </div>
-                    </div>
+                    <HotMovie movie={movie}></HotMovie>
                 ))}
                 responsive={{
                     0: {
@@ -122,39 +77,7 @@ function HomePage() {
             <Typography variant="h5">Phim lẻ mới nhất</Typography>
             <AliceCarousel
                 items={newSingleMovies.map((movie) => (
-                    <div style={{ padding: '10px', position: 'relative' }}>
-                        <img
-                            draggable="false"
-                            src={'https://image.tmdb.org/t/p/w400' + movie.poster_path}
-                            style={{
-                                width: '100%',
-                                objectFit: 'cover',
-                                padding: '20px 10px',
-                                display: 'block',
-                            }}
-                        ></img>
-                        <div style={{ marginLeft: '10px' }}>
-                            <Typography
-                                sx={{
-                                    fontWeight: 500,
-                                    fontSize: '16px',
-                                    textShadow: '0 0 5px 0 hsla(0,0%,64.7%,.75)',
-                                }}
-                            >
-                                {movie.title}
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    fontSize: '14px',
-                                    marginBottom: '15px',
-                                    marginLeft: '2px',
-                                    textShadow: '0 0 5px 0 hsla(0,0%,64.7%,.75)',
-                                }}
-                            >
-                                {movie.release_date.slice(0, 4)}
-                            </Typography>
-                        </div>
-                    </div>
+                    <MovieItem movie={movie}></MovieItem>
                 ))}
                 responsive={{
                     0: {
@@ -174,39 +97,7 @@ function HomePage() {
             <Typography variant="h5">Phim được đánh giá cao</Typography>
             <AliceCarousel
                 items={topRated.map((movie) => (
-                    <div style={{ padding: '10px', position: 'relative' }}>
-                        <img
-                            draggable="false"
-                            src={'https://image.tmdb.org/t/p/w400' + movie.poster_path}
-                            style={{
-                                width: '100%',
-                                objectFit: 'cover',
-                                padding: '20px 10px',
-                                display: 'block',
-                            }}
-                        ></img>
-                        <div style={{ marginLeft: '10px' }}>
-                            <Typography
-                                sx={{
-                                    fontWeight: 500,
-                                    fontSize: '16px',
-                                    textShadow: '0 0 5px 0 hsla(0,0%,64.7%,.75)',
-                                }}
-                            >
-                                {movie.title}
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    fontSize: '14px',
-                                    marginBottom: '15px',
-                                    marginLeft: '2px',
-                                    textShadow: '0 0 5px 0 hsla(0,0%,64.7%,.75)',
-                                }}
-                            >
-                                {movie.release_date.slice(0, 4)}
-                            </Typography>
-                        </div>
-                    </div>
+                    <MovieItem movie={movie}></MovieItem>
                 ))}
                 responsive={{
                     0: {
