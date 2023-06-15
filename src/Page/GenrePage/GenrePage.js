@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 function GenrePage() {
-    const { theloai } = useParams();
-    return <>Chúng ta đang xem thể loại: {theloai}</>;
+    const { theLoai } = useParams();
+    return <>Chúng ta đang xem thể loại: {theLoai}</>;
 }
 
 export default GenrePage;
