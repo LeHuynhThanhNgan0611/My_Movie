@@ -13,7 +13,11 @@ function SideBar() {
             <Grid container spacing={3}>
                 {years.map((year) => (
                     <Grid xs={2.4} item key={years}>
-                        <Button component={Link} to={`/nam-phat-hanh/${year}`} variant="outlined">
+                        <Button
+                            component={Link}
+                            to={`/nam-phat-hanh/${year}/page/1`}
+                            variant="outlined"
+                        >
                             {year}
                         </Button>
                     </Grid>

@@ -2,6 +2,9 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -33,7 +36,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        paddingLeft: `calc( ${theme.spacing(2)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
@@ -46,12 +49,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBar() {
+    const [text, setText] = useState();
     return (
-        <Search>
-            <SearchIconWrapper>
+        <>
+            <Search>
+                <SearchIconWrapper></SearchIconWrapper>
+                <StyledInputBase
+                    onChange={(e) => {
+                        setText(e.target.value);
+                    }}
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
+                />
+            </Search>
+            <Button sx={{ color: 'white' }} component={Link} to={'/tim-kiem/' + text}>
                 <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
-        </Search>
+            </Button>
+        </>
     );
 }

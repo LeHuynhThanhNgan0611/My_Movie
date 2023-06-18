@@ -21,7 +21,10 @@ function MovieItem({ movie }) {
                     component={Link}
                     to={'/xem-phim/' + movie.id}
                     draggable="false"
+                    noWrap
+                    title={movie.title}
                     sx={{
+                        display: 'block',
                         fontWeight: 500,
                         fontSize: '16px',
                         textShadow: '0 0 5px 0 hsla(0,0%,64.7%,.75)',
