@@ -4,7 +4,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -49,6 +49,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBar() {
+    const navigate = useNavigate();
     const [text, setText] = useState();
     return (
         <>
@@ -60,6 +61,12 @@ export default function SearchBar() {
                     }}
                     placeholder="Search…"
                     inputProps={{ 'aria-label': 'search' }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            navigate('/tim-kiem/' + text);
+                        }
+                    }}
                 />
             </Search>
             <Button sx={{ color: 'white' }} component={Link} to={'/tim-kiem/' + text}>

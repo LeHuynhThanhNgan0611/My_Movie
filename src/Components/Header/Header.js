@@ -124,7 +124,7 @@ const pages = [
     },
 ];
 
-function Header() {
+function Header({ changeTheme }) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -143,8 +143,8 @@ function Header() {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="/"
+                        component={Button}
+                        onClick={() => changeTheme()}
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -155,7 +155,7 @@ function Header() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        MY MOVIE
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
