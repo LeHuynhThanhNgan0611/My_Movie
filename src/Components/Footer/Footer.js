@@ -1,5 +1,13 @@
+import { AppBar, Container, Toolbar } from '@mui/material';
+
 function Footer() {
-    return <h1>Footer</h1>;
+    return (
+        <AppBar position="static" color="primary">
+            <Toolbar>
+                <Container maxWidth="lg">Đây là footer</Container>
+            </Toolbar>
+        </AppBar>
+    );
 }
 
 export default Footer;
