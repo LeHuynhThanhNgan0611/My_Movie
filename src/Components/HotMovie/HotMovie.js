@@ -21,6 +21,7 @@ function HotMovie({ movie }) {
                     position: 'absolute',
                     bottom: '25px',
                     left: '25px',
+                    marginLeft: '15px',
                 }}
             >
                 <div

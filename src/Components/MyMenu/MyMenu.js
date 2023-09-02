@@ -41,7 +41,7 @@ function MyMenu({ children, list, Component, sx }) {
                 {list.map((item) => (
                     <MenuItem
                         component={Link}
-                        to={item.link}
+                        to={`/the-loai/${item.id}/page/1`}
                         key={item.name}
                         onClick={handleCloseUserMenu}
                     >
