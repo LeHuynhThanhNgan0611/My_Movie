@@ -7,32 +7,60 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
+import MyMenu from '../MyMenu/MyMenu';
+import SearchBar from '../SearchBar/SearchBar';
 
-const pages = ['Trang chủ', 'Phim lẻ', 'Phim bộ', 'Thể loại', 'Quốc gia'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = [
+    {
+        name: 'Trang chủ',
+        link: '/',
+        component: 'link',
+    },
+    {
+        name: 'Phim lẻ',
+        link: '/phim-le',
+        component: 'link',
+    },
+    {
+        name: 'Phim bộ',
+        link: '/phim-bo',
+        component: 'link',
+    },
+    {
+        name: 'Thể loại',
+        list: [
+            { name: 'Hành động', link: '/the-loai/hanh-dong' },
+            { name: 'Tâm lý', link: '/the-loai/tam-ly' },
+            { name: 'Hài hước', link: '/the-loai/hai-huoc' },
+            { name: 'Kinh dị', link: '/the-loai/kinh-di' },
+        ],
+        component: 'menu',
+    },
+    {
+        name: 'Quốc gia',
+        list: [
+            { name: 'Việt Nam', link: '/quoc-gia/viet-nam' },
+            { name: 'Hàn Quốc', link: '/quoc-gia/han-quoc' },
+            { name: 'Hoa Ngữ', link: '/quoc-gia/hoa-ngu' },
+            { name: 'Thái Lan', link: '/quoc-gia/thai-lan' },
+        ],
+        component: 'menu',
+    },
+];
 
-function ResponsiveAppBar() {
+function Header() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     return (
@@ -87,11 +115,26 @@ function ResponsiveAppBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+                            {pages.map((page) => {
+                                if (page.component == 'link') {
+                                    return (
+                                        <MenuItem
+                                            component={Link}
+                                            to={page.link}
+                                            key={page.name}
+                                            onClick={handleCloseNavMenu}
+                                        >
+                                            <Typography textAlign="center">{page.name}</Typography>
+                                        </MenuItem>
+                                    );
+                                } else if (page.component === 'menu') {
+                                    return (
+                                        <MyMenu Component={MenuItem} list={page.list}>
+                                            {page.name}
+                                        </MyMenu>
+                                    );
+                                }
+                            })}
                         </Menu>
                     </Box>
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -114,49 +157,37 @@ function ResponsiveAppBar() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
+                        {pages.map((page) => {
+                            if (page.component === 'link') {
+                                return (
+                                    <Button
+                                        component={Link}
+                                        to={page.link}
+                                        key={page.name}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
+                                        {page.name}
+                                    </Button>
+                                );
+                            } else if (page.component === 'menu') {
+                                return (
+                                    <MyMenu
+                                        key={page.name}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                        Component={Button}
+                                        list={page.list}
+                                    >
+                                        {page.name}
+                                    </MyMenu>
+                                );
+                            }
+                        })}
                     </Box>
-
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
+                    <SearchBar></SearchBar>
                 </Toolbar>
             </Container>
         </AppBar>
     );
 }
-export default ResponsiveAppBar;
+export default Header;

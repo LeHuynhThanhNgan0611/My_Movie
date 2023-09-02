@@ -12,8 +12,8 @@ export const publicRoutes = [
     { path: '/', Component: HomePage, Layout: MainLayout },
     { path: '/phim-le', Component: SingleMoviesPage, Layout: MainLayout },
     { path: '/phim-bo', Component: SeriesPage, Layout: MainLayout },
-    { path: '/the-loai/:theloai', Component: GenrePage, Layout: MainLayout },
-    { path: '/quoc-gia/:quocgia', Component: CountryPage, Layout: MainLayout },
+    { path: '/the-loai/:theLoai', Component: GenrePage, Layout: MainLayout },
+    { path: '/quoc-gia/:quocGia', Component: CountryPage, Layout: MainLayout },
     { path: '/nam-phat-hanh/:namPhatHanh', Component: YearPage, Layout: MainLayout },
     { path: '*', Component: DefaultPage, Layout: SubLayout },
 ];

@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 function CountryPage() {
-    const { quocgia } = useParams();
-    return <>Chúng ta đang xem phim của nước: {quocgia}</>;
+    const { quocGia } = useParams();
+    return <>Chúng ta đang xem phim của nước: {quocGia}</>;
 }
 
 export default CountryPage;
