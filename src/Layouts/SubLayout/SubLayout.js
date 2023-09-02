@@ -1,10 +1,10 @@
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 
-function SubLayout({ children }) {
+function SubLayout({ children, changeTheme }) {
     return (
         <>
-            <Header></Header>
+            <Header changeTheme={changeTheme}></Header>
             {children}
             <Footer></Footer>
         </>

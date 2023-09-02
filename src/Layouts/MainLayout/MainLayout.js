@@ -3,17 +3,17 @@ import Header from '../../Components/Header/Header';
 import SideBar from '../../Components/SideBar/SideBar';
 import { Container, Grid } from '@mui/material';
 
-function MainLayout({ children }) {
+function MainLayout({ children, changeTheme }) {
     return (
         <>
-            <Header></Header>
+            <Header changeTheme={changeTheme}></Header>
             <Container maxWidth="xl">
                 <Grid container>
                     <Grid item xs={12} sm={12} md={8}>
                         {children}
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
-                            <SideBar></SideBar>
+                        <SideBar></SideBar>
                     </Grid>
                 </Grid>
             </Container>
