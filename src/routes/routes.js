@@ -7,6 +7,7 @@ import SubLayout from '../Layouts/SubLayout/SubLayout';
 import GenrePage from '../Page/GenrePage/GenrePage';
 import CountryPage from '../Page/CountryPage/CountryPage';
 import YearPage from '../Page/YearPage/YearPage';
+import WatchMoviePage from '../Page/WatchMoviePage/WatchMoviePage';
 
 export const publicRoutes = [
     { path: '/', Component: HomePage, Layout: MainLayout },
@@ -15,5 +16,6 @@ export const publicRoutes = [
     { path: '/the-loai/:theLoai', Component: GenrePage, Layout: MainLayout },
     { path: '/quoc-gia/:quocGia', Component: CountryPage, Layout: MainLayout },
     { path: '/nam-phat-hanh/:namPhatHanh', Component: YearPage, Layout: MainLayout },
+    { path: '/xem-phim/:id', Component: WatchMoviePage, Layout: MainLayout },
     { path: '*', Component: DefaultPage, Layout: SubLayout },
 ];
